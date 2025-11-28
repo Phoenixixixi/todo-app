@@ -14,7 +14,12 @@ type TodoState = {
 
 const initialState: TodoState = {
   list: [
-    { id: 1, title: 'here first todo example', desc: 'example', isDone: false },
+    {
+      id: 1,
+      title: 'here the first todo example',
+      desc: 'example',
+      isDone: false,
+    },
   ],
 }
 
@@ -32,9 +37,20 @@ const todo = createSlice({
         desc: action.payload.desc,
         isDone: false,
       })
+      console.log('data added')
+    },
+    deleteTodo: (state, action: PayloadAction<number>) => {
+      state.list = state.list.filter((item) => item.id !== action.payload)
+    },
+    updateDone: (state, action: PayloadAction<number>) => {
+      const todo = state.list.find((item) => item.id === action.payload)
+      if (todo) {
+        todo.isDone = !todo.isDone
+      }
     },
   },
 })
 
-export const { addTodo } = todo.actions
+export const { addTodo, deleteTodo, updateDone } = todo.actions
 export default todo.reducer
+export type { Todo }

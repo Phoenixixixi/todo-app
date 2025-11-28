@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
+import todo from '../features/todoSlice'
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    todo,
+  },
 })
 
-// Type untuk state global
+//exporting type
+export type AppStore = typeof store
 export type RootState = ReturnType<typeof store.getState>
-
-// Type untuk dispatch
 export type AppDispatch = typeof store.dispatch
