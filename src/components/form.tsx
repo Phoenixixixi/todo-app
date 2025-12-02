@@ -13,7 +13,10 @@ export default function Form() {
     const description = (
       form.elements.namedItem('description') as HTMLInputElement
     ).value
-
+    if (title.length === 0 || description.length === 0) {
+      console.log('failed to add data')
+      return
+    }
     dispatch(
       addTodo({
         title,
